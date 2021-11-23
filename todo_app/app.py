@@ -12,7 +12,8 @@ def index():
     return render_template('index.html', get_items = get_items)
 
 
-#adding the list
+#adding to the list
+#this is not working - need to read more for it
 @app.route('/add', methods=["POST"])
 def add():
     newitem = request.form['title']
