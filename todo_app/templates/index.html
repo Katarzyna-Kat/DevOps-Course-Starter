@@ -16,6 +16,11 @@
       <li>{{item.title}}</li>
       {%endfor%}
     </ul>
+    <form method="POST">
+      <label for="title">Item</label>
+      <input name="title" id="title" required>
+      <input type="submit" value="Submit">
+    </form>
   </div>
 </div>
 {% endblock %}
