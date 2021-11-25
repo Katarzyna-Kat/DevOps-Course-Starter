@@ -13,7 +13,6 @@ def index():
 
 
 # adding to the list
-# this is not working
 @app.route("/add", methods=["POST"])
 def add():
     newitem = request.form["title"]
