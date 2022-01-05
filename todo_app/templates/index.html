@@ -3,33 +3,27 @@
 
 {% block content %}
 <div class="jumbotron">
-  <h1 class="display-4">To-Do App</h1>
-  <!-- <p class="lead">Just another to-do app.</p> -->
+  <h1 class="display-4">To-Do app</h1>
+  <p class="lead">Module 2.</p>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <!-- <h2>Items</h2> -->
+    <h2>To-do</h2>
     <ul class="list-group mb-4">
       <!-- List the todo items here -->
 
-      <h2>To-do</h2>
-      {% for item in list_of_items %}
-      <li>{{item.title}}</li>
-      <!-- <from class="float-end" method="POST" action="/delete/({item.id})">
-        <input type="submit" name="delete" class="btn-secondary" value="Delete">
-        <input type="hidden" name="delete_id" value="({item.id})">
-      </from> -->
-
+      {% for item in list_of_cards %}
+      <li>{{item.name}}</li>
       {%endfor%}
-
-      <!-- <form action="/add" method="POST">
-        <label for="title">Item</label>
-        <input name="title" id="title" required>
-        <input type="submit" value="Submit">
-      </form> -->
-
     </ul>
+
+    <form action="/add" method="POST">
+      <label for="name">Item</label>
+      <input type="text" name="name" id="name" required>
+      <input type="submit" value="Submit">
+    </form>
+
   </div>
 </div>
 {% endblock %}

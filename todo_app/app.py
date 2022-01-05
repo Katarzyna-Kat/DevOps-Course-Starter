@@ -4,7 +4,6 @@ from flask import Flask, render_template, request, redirect, url_for
 from todo_app.data.trello_items import (
     show_cards,
     add_item,
-    delete_item,
 )
 
 from todo_app.flask_config import Config
@@ -19,17 +18,17 @@ def index():
     all_items = show_cards()
     list_of_cards = []
     for sections in all_items:
-        for card in sections:
+        for card in sections["cards"]:
             list_of_cards.append(card)
-            return render_template("index.html", list_of_items=list_of_cards)
+    return render_template("index.html", list_of_cards=list_of_cards)
 
 
-# # adding to the list
-# @app.route("/add", methods=["POST"])
-# def add():
-#     newitem = request.form["title"]
-#     add_item(newitem)
-#     return redirect(url_for("index"))
+@app.route("/add", methods=["POST"])
+def add():
+    newitem = request.form["name"]
+    add_item(newitem)
+    return redirect(url_for("index"))
+
 
 
 # deleteing item from list
