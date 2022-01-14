@@ -1,5 +1,4 @@
-# create functions in here for the fetching of each list
-# so I need to add update and delete buttons in the html
+# create a class
 
 import requests
 import dotenv
@@ -14,6 +13,7 @@ TOKEN = os.getenv("KAT_TOKEN")
 LIST_TODO = os.getenv("TODO_LIST_ID")
 LIST_DOING = os.getenv("DOING_LIST_ID")
 LIST_DONE = os.getenv("DONE_LIST_ID")
+
 
 
 ##### Fetch functions
@@ -36,14 +36,35 @@ def add_item(name):
     return requests.request("POST", url, data=query)
 
 
-# ##### Delete function
+##### Delete function
 
-# def delete_item(id):
-#     url = f"https://api.trello.com/1/cards/{ID}?key={KEY}&token={TOKEN}"
-#     headers = {"Accept": "application/json"}
-#     response = requests.request("DELETE", url, headers=headers)
+
+def delete_item(id):
+    url = f"https://api.trello.com/1/cards/{id}?key={KEY}&token={TOKEN}"
+
+    query = {"id": id, "key": KEY, "token": TOKEN}
+    return requests.delete(url=url, data=query)
 
 
 ##### Update function
 
-# def update_item():
+
+def move_to_todo(id):
+    url = f"https://api.trello.com/1/cards/{id}?idList={LIST_TODO}&key={KEY}&token={TOKEN}"
+    headers = {"Accept": "application/json"}
+
+    return requests.request("PUT", url=url, data=headers)
+
+
+def move_to_progress(id):
+    url = f"https://api.trello.com/1/cards/{id}?idList={LIST_DOING}&key={KEY}&token={TOKEN}"
+    headers = {"Accept": "application/json"}
+
+    return requests.request("PUT", url=url, data=headers)
+
+
+def move_to_done(id):
+    url = f"https://api.trello.com/1/cards/{id}?idList={LIST_DONE}&key={KEY}&token={TOKEN}"
+    headers = {"Accept": "application/json"}
+
+    return requests.request("PUT", url=url, data=headers)
