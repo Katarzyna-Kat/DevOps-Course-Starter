@@ -3,24 +3,81 @@
 
 {% block content %}
 <div class="jumbotron">
-  <h1 class="display-4">To-Do App</h1>
-  <p class="lead">Just another to-do app.</p>
+  <h1 class="display-4">To-Do app</h1>
+  <p class="lead">Module 2.</p>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <h2>Items</h2>
-    <ul class="list-group mb-4">
-      <!-- List the todo items here -->
-      {% for item in items %}
-      <li>{{item.title}}</li>
-      {%endfor%}
-    </ul>
+
     <form action="/add" method="POST">
-      <label for="title">Item</label>
-      <input name="title" id="title" required>
+      <label for="name">Item</label>
+      <input type="text" name="name" id="name" required>
       <input type="submit" value="Submit">
     </form>
+
+
+    <h2>To-do</h2>
+    <ul class="list-group mb-4">
+      {% for item in list_of_cards_todo %}
+      <li>{{item.name}}</li>
+      <form method="POST" action="/into_progress/{{item.id}}">
+        <input type="submit" name="Progress" value="Move to progress" data-source="{{item.id}}">
+        <input type="hidden" name="Progress_id" value="{{item.id}}">
+      </form>
+      <form method="POST" action="/into_done/{{item.id}}">
+        <input type="submit" name="Done" value="Move to done" data-source="{{item.id}}">
+        <input type="hidden" name="Done_id" value="{{item.id}}">
+      </form>
+      <form method="POST" action="/delete/{{item.id}}">
+        <input type="submit" name="Remove" value="Delete">
+        <input type="hidden" name="Remove_id" value="{{item.id}}">
+      </form>
+      {%endfor%}
+    </ul>
+
+
+    <h2>Progress</h2>
+    <ul class="list-group mb-4">
+      {% for item in list_of_cards_doing %}
+      <li>{{item.name}}</li>
+      <form method="POST" action="/into_todo/{{item.id}}">
+        <input type="submit" name="ToDo" value="Move to To-Do" data-source="{{item.id}}">
+        <input type="hidden" name="ToDo_id" value="{{item.id}}">
+      </form>
+      <form method="POST" action="/into_done/{{item.id}}">
+        <input type="submit" name="Done" value="Move to done" data-source="{{item.id}}">
+        <input type="hidden" name="Done_id" value="{{item.id}}">
+      </form>
+      <form method="POST" action="/delete/{{item.id}}">
+        <input type="submit" name="Remove" value="Delete">
+        <input type="hidden" name="Remove_id" value="{{item.id}}">
+      </form>
+      {%endfor%}
+    </ul>
+
+
+    <h2>Done</h2>
+    <ul class="list-group mb-4">
+      {% for item in list_of_cards_done %}
+      <li>{{item.name}}</li>
+      <form method="POST" action="/into_todo/{{item.id}}">
+        <input type="submit" name="ToDo" value="Move to To-Do" data-source="{{item.id}}">
+        <input type="hidden" name="ToDo_id" value="{{item.id}}">
+      </form>
+      <form method="POST" action="/into_progress/{{item.id}}">
+        <input type="submit" name="Progress" value="Move to progress" data-source="{{item.id}}">
+        <input type="hidden" name="Progress_id" value="{{item.id}}">
+      </form>
+      <form method="POST" action="/delete/{{item.id}}">
+        <input type="submit" name="Remove" value="Delete">
+        <input type="hidden" name="Remove_id" value="{{item.id}}">
+      </form>
+      {%endfor%}
+    </ul>
+
+
+
   </div>
 </div>
 {% endblock %}
