@@ -1,11 +1,5 @@
-# create a class
-
 import requests
-import dotenv
 import os
-import json
-
-dotenv.load_dotenv("../.env")
 
 BOARD_ID = os.getenv("KAT_BOARD_ID")
 KEY = os.getenv("KAT_KEY")
@@ -15,18 +9,11 @@ LIST_DOING = os.getenv("DOING_LIST_ID")
 LIST_DONE = os.getenv("DONE_LIST_ID")
 
 
-
-##### Fetch functions
-
-
 def show_cards():
     url = f"https://api.trello.com/1/boards/{BOARD_ID}/lists"
 
     query = {"key": KEY, "token": TOKEN, "cards": "open"}
     return requests.get(url, data=query).json()
-
-
-##### Add function
 
 
 def add_item(name):
@@ -36,17 +23,11 @@ def add_item(name):
     return requests.request("POST", url, data=query)
 
 
-##### Delete function
-
-
 def delete_item(id):
     url = f"https://api.trello.com/1/cards/{id}?key={KEY}&token={TOKEN}"
 
     query = {"id": id, "key": KEY, "token": TOKEN}
     return requests.delete(url=url, data=query)
-
-
-##### Update function
 
 
 def move_to_todo(id):
