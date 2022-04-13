@@ -53,3 +53,12 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 
 
 Make sure you create a trello board and get the key and token for it.
+
+
+Ansible:
+Log to your Control Node and use this command to provision host VM:
+```
+$ ansible-playbook -i Inventory Kat_playbook
+```
+Make sure you have: KEY, TOKEN, BOARD_ID, TODO_LIST_ID, DOING_LIST_ID and DONE_LIST_ID with you.
+

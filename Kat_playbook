@@ -1,0 +1,79 @@
+- name: App Main
+  hosts: Kat-Hosts
+  remote_user: ec2-user
+  vars_prompt:
+
+    - name: KAT_KEY
+      prompt: What is your API key?
+      private: no
+
+    - name: KAT_TOKEN
+      prompt: What is your API token?
+      private: no
+
+    - name: KAT_BOARD_ID
+      prompt: What is your board ID?
+      private: no
+
+    - name: TODO_LIST_ID
+      prompt: What is your todo list id?
+      private: no
+
+    - name: DOING_LIST_ID
+      prompt: What is your doing list id?
+      private: no
+    
+    - name: DONE_LIST_ID
+      prompt: What is your done list id?
+      private: no
+
+
+  tasks:
+  - name: Installing git and python
+    ansible.builtin.yum:
+      name: git, python3
+      state: latest
+    become: yes
+
+  - name: Poetry
+    ansible.builtin.shell: curl -sSL https://install.python-poetry.org | python3 -
+    args:
+      creates: ~/.local/bin/poetry
+
+  - name: Create directory for the To-Do App code
+    ansible.builtin.file:
+      path: /opt/todoapp
+      state: directory
+      owner: ec2-user
+    become: yes
+
+  - name: Git checkout
+    ansible.builtin.git:
+      repo: 'https://github.com/Katarzyna-Kat/DevOps-Course-Starter.git'
+      dest: /opt/todoapp
+      version: module_4
+
+  - name: Install project dependencies 
+    ansible.builtin.command: ~/.local/bin/poetry install
+    args:
+      chdir: /opt/todoapp
+
+  - name: Create env file
+    ansible.builtin.template:
+      src: .env.j2
+      dest: /opt/todoapp/.env
+
+
+  - name: Copy todo app service to host
+    ansible.builtin.copy:
+      src: todoapp.service
+      dest: /etc/systemd/system/todoapp.service
+    become: yes
+
+  - name: Reload todoapp.service
+    ansible.builtin.systemd:
+      state: restarted
+      daemon_reload: yes
+      name: todoapp.service
+    become: yes
+
