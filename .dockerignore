@@ -1,0 +1,13 @@
+.github
+.pytest_cache
+.venv
+.env
+.env.dev
+.env.template
+.gitignore
+Inventory
+ruby_playbook
+poetry.lock
+todoapp.service
+Dockerfile
+README.md
