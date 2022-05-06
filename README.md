@@ -54,8 +54,20 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 
 Make sure you create a trello board and get the key and token for it.
 
+## Env
 
-Ansible:
+To get into the venv type
+```
+source env/Scripts/activate
+```
+
+## Tests
+
+```
+poetry run pytest tests/test_file_name
+```
+
+## Ansible:
 Log to your Control Node and use this command to provision host VM:
 ```
 $ ansible-playbook -i Inventory Kat_playbook

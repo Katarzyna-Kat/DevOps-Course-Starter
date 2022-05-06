@@ -1,6 +1,7 @@
 import pytest
 from todo_app.class_items import Item
 
+
 class ViewModel:
     def __init__(self, items):
         self._items = items
@@ -43,12 +44,8 @@ def items():
 
 
 def test_to_do_items_only_shows_items_in_the_to_do_list(items):
-    # Test Case Setup
     view_model = ViewModel(items)
-    # End Test Case Setup
-    # Start Testing...
     result: list[Item] = view_model.to_do_items
-    # Checking everything worked
     assert len(result) == 1
     item = result[0]
     assert item.status == "To Do"
@@ -56,12 +53,8 @@ def test_to_do_items_only_shows_items_in_the_to_do_list(items):
 
 
 def test_to_do_items_only_shows_items_in_the_doing_list(items):
-    # Test Case Setup
     view_model = ViewModel(items)
-    # End Test Case Setup
-    # Start Testing...
     result: list[Item] = view_model.doing_items
-    # Checking everything worked
     assert len(result) == 1
     item = result[0]
     assert item.status == "Doing"
@@ -69,12 +62,8 @@ def test_to_do_items_only_shows_items_in_the_doing_list(items):
 
 
 def test_to_do_items_only_shows_items_in_the_done_list(items):
-    # Test Case Setup
     view_model = ViewModel(items)
-    # End Test Case Setup
-    # Start Testing...
     result: list[Item] = view_model.done_items
-    # Checking everything worked
     assert len(result) == 1
     item = result[0]
     assert item.status == "Done"
