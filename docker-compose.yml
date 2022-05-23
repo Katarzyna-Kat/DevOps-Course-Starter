@@ -11,3 +11,30 @@ services:
       - .env
     ports:
       - 80:80
+
+  webapp-dev:
+    container_name: development
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: development
+    volumes:
+      - type: bind
+        source: ./todo_app
+        target: /opt/todo_app
+    environment:
+      - FLASK_ENV=development
+    env_file:
+      - .env
+    ports:
+      - 5000:5000
+  # webapp-test:
+  #   container_name: test
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: .
+  #     target: test
+  #   volumes:
+  #     - type: bind
+  #       source: ./todo_app
+  #       target: /opt/todo_app
