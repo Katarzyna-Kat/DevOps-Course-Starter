@@ -13,6 +13,7 @@ class ViewModel:
             if item.status == "To Do":
                 to_do_output.append(item)
         return to_do_output
+        
 
     @property
     def doing_items(self):
