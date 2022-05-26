@@ -1,7 +1,6 @@
 FROM python:3.10.3-slim-buster as base
-RUN apt-get update
-COPY . /opt/
-WORKDIR /opt
+COPY . /app/
+WORKDIR /app
 RUN pip install poetry
 RUN poetry install
 
@@ -18,5 +17,3 @@ FROM base as test
 ENV PATH = "${PATH}:/root/todo_app"
 ENTRYPOINT ["poetry", "run", "pytest"]
 CMD ["todo_app"]
-
-# might not 

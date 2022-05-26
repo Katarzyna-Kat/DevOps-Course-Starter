@@ -14,7 +14,7 @@ from todo_app.data.trello_items import (
 from todo_app.flask_config import Config
 
 from todo_app.class_items import Item
-from todo_app.vie_model_class import ViewModel
+from todo_app.view_model_class import ViewModel
 
 
 app = Flask(__name__)

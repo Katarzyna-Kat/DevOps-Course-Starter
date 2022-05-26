@@ -1,4 +1,3 @@
-import pytest
 from todo_app.class_items import Item
 
 

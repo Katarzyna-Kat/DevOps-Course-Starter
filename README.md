@@ -74,3 +74,19 @@ $ ansible-playbook -i Inventory Kat_playbook
 ```
 Make sure you have: KEY, TOKEN, BOARD_ID, TODO_LIST_ID, DOING_LIST_ID and DONE_LIST_ID with you.
 
+
+## Docker:
+To use docker for this project use command the first time:
+```
+docker compose up --build
+```
+Then you can use:
+```
+docker compose up
+```
+The board will be under 'localhost:80', and 'localhost:5000'.
+
+To test inside the docker use:
+```
+#######
+```
