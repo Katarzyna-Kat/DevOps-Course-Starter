@@ -1,0 +1,15 @@
+.github
+.pytest_cache
+.venv
+.env
+.env.dev
+.env.j2
+.env.template
+.env.test
+.gitignore
+Inventory
+Kat_playbook
+poetry.lock
+todoapp.service
+Dockerfile
+README.md

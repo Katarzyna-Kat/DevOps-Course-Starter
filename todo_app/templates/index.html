@@ -19,7 +19,7 @@
 
     <h2>To-do</h2>
     <ul class="list-group mb-4">
-      {% for item in list_of_cards_todo %}
+      {% for item in view_model.to_do_items %}
       <li>{{item.name}}</li>
       <form method="POST" action="/into_progress/{{item.id}}">
         <input type="submit" name="Progress" value="Move to progress" data-source="{{item.id}}">
@@ -39,7 +39,7 @@
 
     <h2>Progress</h2>
     <ul class="list-group mb-4">
-      {% for item in list_of_cards_doing %}
+      {% for item in view_model.doing_items %}
       <li>{{item.name}}</li>
       <form method="POST" action="/into_todo/{{item.id}}">
         <input type="submit" name="ToDo" value="Move to To-Do" data-source="{{item.id}}">
@@ -59,7 +59,7 @@
 
     <h2>Done</h2>
     <ul class="list-group mb-4">
-      {% for item in list_of_cards_done %}
+      {% for item in view_model.done_items %}
       <li>{{item.name}}</li>
       <form method="POST" action="/into_todo/{{item.id}}">
         <input type="submit" name="ToDo" value="Move to To-Do" data-source="{{item.id}}">

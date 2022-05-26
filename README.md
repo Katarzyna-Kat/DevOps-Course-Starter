@@ -54,11 +54,39 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 
 Make sure you create a trello board and get the key and token for it.
 
+## Env
 
-Ansible:
+To get into the venv type
+```
+source env/Scripts/activate
+```
+
+## Tests
+
+```
+poetry run pytest tests/test_file_name
+```
+
+## Ansible:
 Log to your Control Node and use this command to provision host VM:
 ```
 $ ansible-playbook -i Inventory Kat_playbook
 ```
 Make sure you have: KEY, TOKEN, BOARD_ID, TODO_LIST_ID, DOING_LIST_ID and DONE_LIST_ID with you.
 
+
+## Docker:
+To use docker for this project use command the first time:
+```
+docker compose up --build
+```
+Then you can use:
+```
+docker compose up
+```
+The board will be under 'localhost:80', and 'localhost:5000'.
+
+To test inside the docker use:
+```
+#######
+```

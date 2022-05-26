@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 
+
 # from todo_app.data.session_items import get_items, add_item
 from todo_app.data.trello_items import (
     show_cards,
@@ -13,6 +14,7 @@ from todo_app.data.trello_items import (
 from todo_app.flask_config import Config
 
 from todo_app.class_items import Item
+from todo_app.view_model_class import ViewModel
 
 
 app = Flask(__name__)
@@ -25,23 +27,10 @@ app.config.from_object(Config())
 @app.route("/", methods=["GET"])
 def index():
     all_items = show_cards()
-    list_of_cards_todo = []
-    list_of_cards_doing = []
-    list_of_cards_done = []
-    for list in all_items:
-        for trellocard in list["cards"]:
-            card = Item.from_trello_card(trellocard, list["name"])
-            if list["name"] == "To Do":
-                list_of_cards_todo.append(card)
-            elif list["name"] == "Doing":
-                list_of_cards_doing.append(card)
-            elif list["name"] == "Done":
-                list_of_cards_done.append(card)
+    view_model = ViewModel(all_items)
     return render_template(
         "index.html",
-        list_of_cards_todo=list_of_cards_todo,
-        list_of_cards_doing=list_of_cards_doing,
-        list_of_cards_done=list_of_cards_done,
+        view_model=view_model,
     )
 
 
