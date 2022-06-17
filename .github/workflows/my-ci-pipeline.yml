@@ -31,6 +31,6 @@ jobs:
     - name: docker build
       run: docker build -t zorion75/todo-app-module8 .
     - name: login
-      run: echo ${{secrets.DOCKER_HUB_TOKEN}} | docker login --username zorion75 --password -stdin
+      run: echo ${{secrets.DOCKER_HUB_TOKEN}} | docker login --username zorion75 --password-stdin
     - name: push image to docker hub
       run: docker push zorion75/todo-app-module8
