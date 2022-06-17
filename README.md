@@ -86,7 +86,4 @@ docker compose up
 ```
 The board will be under 'localhost:80', and 'localhost:5000'.
 
-To test inside the docker use:
-```
-#######
-```
+To run github actions, you need to either have push or pull request.
