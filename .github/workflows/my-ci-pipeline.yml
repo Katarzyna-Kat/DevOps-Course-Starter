@@ -9,6 +9,6 @@ jobs:
     - run: pwd
     - run: ls
     - run: touch .env # creating empty env file coz docker compose needs one
-    - run: docker-compose up webapp-test
-    # - run: docker build --target test -t todo-app:test . 
-    # - run: docker run --env-file ./.env.test todo-app:test
+    # - run: docker-compose up webapp-test
+    - run: docker build --target test -t todo-app:test . 
+    - run: docker run --env-file ./.env.test todo-app:test
