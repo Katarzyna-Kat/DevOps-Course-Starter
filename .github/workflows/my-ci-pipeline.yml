@@ -5,7 +5,7 @@ on:
       - module_7
     paths-ignore:
       - '**.md'
-  pull_requests:
+  pull_request:
     paths-ignore:
       - '**.md'
 
