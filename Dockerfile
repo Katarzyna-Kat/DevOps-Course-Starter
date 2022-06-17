@@ -6,12 +6,12 @@ RUN poetry install
 
 FROM base as production
 EXPOSE 80
-RUN chmod +x /opt/gunicorn.sh
-ENTRYPOINT ["/opt/gunicorn.sh"]
+RUN chmod +x ./gunicorn.sh
+ENTRYPOINT ["./gunicorn.sh"]
 
 FROM base as development
 EXPOSE 5000
-ENTRYPOINT ["sh", "/opt/flask.sh" ]
+ENTRYPOINT ["sh", "./flask.sh" ]
 
 FROM base as test
 ENV PATH = "${PATH}:/root/todo_app"
