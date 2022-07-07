@@ -41,10 +41,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API}}
-          heroku_app_name: "todo-app-kat-module8"
-          heroku_email: "katarzyna.polonkiewicz@kpmg.co.uk"
-          usedocker: true
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API}}
+        heroku_app_name: "todo-app-kat-module8"
+        heroku_email: "katarzyna.polonkiewicz@kpmg.co.uk"
+        usedocker: true
 
           #hello
