@@ -10,7 +10,7 @@ services:
     env_file:
       - .env
     ports:
-      - 80:80
+      - 8000:80
 
   webapp-dev:
     container_name: development
