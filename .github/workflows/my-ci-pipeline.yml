@@ -40,4 +40,4 @@ jobs:
       needs: dockerhub
       steps:
         - name: azure
-          run: curl -dH -X POST ${{secrets.WEB_HOOK_URL}}
+          run: curl -dH -X POST ${{secrets.WEBHOOK_URL}}
