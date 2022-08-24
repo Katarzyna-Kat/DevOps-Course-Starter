@@ -33,3 +33,11 @@ jobs:
       run: echo ${{secrets.DOCKER_HUB_TOKEN}} | docker login --username zorion75 --password-stdin
     - name: push image to docker hub
       run: docker push zorion75/todo-app
+
+    webhook:
+      name: Azure
+      runs-on: ubuntu-latest
+      needs: dockerhub
+      steps:
+        - name: azure
+          run: curl -dH -X POST ${{secrets.WEB_HOOK_URL}}
