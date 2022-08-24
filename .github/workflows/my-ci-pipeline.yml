@@ -1,0 +1,22 @@
+name: Continuous Integration
+on:
+  push:
+    branches:
+      - module_7
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: pwd
+    - run: ls
+    - run: touch .env # creating empty env file coz docker compose needs one
+    - run: docker build --target test -t todo-app:test . 
+    - run: docker run --env-file ./.env.test todo-app:test
