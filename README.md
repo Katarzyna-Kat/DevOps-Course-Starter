@@ -87,3 +87,8 @@ docker compose up
 The board will be under 'localhost:80', and 'localhost:5000'.
 
 To run github actions, you need to either have push or pull request.
+
+## Azure:
+
+New link to the website:
+https://module9katname.azurewebsites.net/
